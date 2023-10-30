@@ -6,7 +6,7 @@
         <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
     </div>
     <div class="scrollable">
-        <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+        <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-9 h-9 text-white transform -rotate-90"></i> </a>
         <ul class="scrollable__content py-2">
             <li>
                 <a href="javascript:;.html" class="menu menu--active">
