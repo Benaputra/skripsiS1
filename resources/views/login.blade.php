@@ -12,7 +12,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="dist/images/logo.svg" rel="shortcut icon">
+        <link href="template/dist/images/logo.svg" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
@@ -29,11 +29,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Login Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone - HTML Admin Template" class="w-6" src="dist/images/logo.svg">
+                        <img alt="Midone - HTML Admin Template" class="w-6" src="template/dist/images/logo.svg">
                         <span class="text-white text-lg ml-3"> FPST UPB </span> 
                     </a>
                     <div class="my-auto">
-                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="dist/images/illustration.svg">
+                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="template/dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
                             A few more clicks to 
                             <br>
