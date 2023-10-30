@@ -49,20 +49,24 @@ License: You must have a valid license purchased only from themeforest(the above
                             Sign Up
                         </h2>
                         <div class="intro-x mt-8">
-                            <input type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Username">
-                            <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="NIM/NIDN">
-                            <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Email">
-                            <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password">
-                        </div>
-                        {{-- <div class="intro-x flex items-center text-slate-600 dark:text-slate-500 mt-4 text-xs sm:text-sm">
-                            <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
-                            <label class="cursor-pointer select-none" for="remember-me">I agree to the Envato</label>
-                            <a class="text-primary dark:text-slate-200 ml-1" href="">Privacy Policy</a>. 
-                        </div> --}}
-                        <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                            <button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
-                            <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">Sign in</button>
-                        </div>
+                            <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Nama Lengkap" name="name">
+                                <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="NIM/NIDN" name="nim_nidn">
+                                <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Email" name="email">
+                                <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" name="password">
+                            </div>
+                            {{-- <div class="intro-x flex items-center text-slate-600 dark:text-slate-500 mt-4 text-xs sm:text-sm">
+                                <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
+                                <label class="cursor-pointer select-none" for="remember-me">I agree to the Envato</label>
+                                <a class="text-primary dark:text-slate-200 ml-1" href="">Privacy Policy</a>. 
+                            </div> --}}
+                            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+                                <button type="submit" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
+                                <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">
+                                    <a href=""></a>Sign in</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- END: Register Form -->
