@@ -10,7 +10,7 @@
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="box"></i> </div>
                 <div class="side-menu__title">
-                    Menu Layout 
+                    Manajemen User
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
@@ -18,42 +18,19 @@
                 <li>
                     <a href="side-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Side Menu </div>
+                        <div class="side-menu__title"> Role </div>
                     </a>
                 </li>
                 <li>
                     <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Simple Menu </div>
+                        <div class="side-menu__title"> Permission </div>
                     </a>
                 </li>
                 <li>
                     <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Top Menu </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-lucide="shopping-bag"></i> </div>
-                <div class="side-menu__title">
-                    E-Commerce 
-                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
-                </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="side-menu-light-categories.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Categories </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="side-menu-light-add-product.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
-                        <div class="side-menu__title"> Add Product </div>
+                        <div class="side-menu__title"> User </div>
                     </a>
                 </li>
             </ul>
