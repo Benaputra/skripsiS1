@@ -14,10 +14,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta charset="utf-8">
         <link href="template/dist/images/logo.svg" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-        <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
+        <meta name="description" content="FASTA UPB (E-Administration Fakultas Pertanian Sains dan Teknologi).">
+        <meta name="keywords" content="Created by Abang Roudhi Benaputra @2023 ">
         <meta name="author" content="LEFT4CODE">
-        <title>Login - Midone - Tailwind HTML Admin Template</title>
+        <title>Login - FASTA UPB </title>
         <!-- BEGIN: CSS Assets-->
             @include('default.css')
         <!-- END: CSS Assets-->
