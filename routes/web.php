@@ -23,6 +23,10 @@ Route::controller(UserController::class)->group(function(){
     Route::post('user/store', 'store')->name('user.store');
 });
 
+Route::get('/user/show', function(){
+    return view('user.index');
+});
+
 // Route::get('register', function(){
 //     return view('register');
 // });

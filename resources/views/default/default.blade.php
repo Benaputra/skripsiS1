@@ -12,7 +12,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="template/dist/images/logo.svg" rel="shortcut icon">
+        <link href="{{ asset('template/dist/image/logo.svg')}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
@@ -32,7 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="h-full flex items-center">
                 <!-- BEGIN: Logo -->
                 <a href="" class="-intro-x hidden md:flex">
-                    <img alt="Midone - HTML Admin Template" class="w-6" src="template/dist/images/logo.svg">
+                    <img alt="Midone - HTML Admin Template" class="w-6" src="{{ asset('template/dist/images/logo.svg') }}">
                     <span class="text-white text-lg ml-3"> Skripsi FPST UPB </span> 
                 </a>
                 <!-- END: Logo -->
@@ -218,6 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="grid grid-cols-12 gap-6">
                         <div class="col-span-12 2xl:col-span-9">
                             <div class="grid grid-cols-12 gap-6">
+                                @yield('content')
                                 <!-- BEGIN: Notification -->
                                 <div class="col-span-12 mt-6 -mb-6 intro-y">
                                     <div class="alert alert-dismissible show box bg-primary text-white flex items-center mb-6" role="alert">

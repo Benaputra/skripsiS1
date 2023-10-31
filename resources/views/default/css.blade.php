@@ -1,2 +1,2 @@
 
-<link rel="stylesheet" href="template/dist/css/app.css" />
+<link rel="stylesheet" href="{{ asset('template/dist/css/app.css') }}" />
