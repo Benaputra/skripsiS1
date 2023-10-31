@@ -20,6 +20,11 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request -> password),
         ]);
-        return view('/');
+        return view('login');
+    }
+
+    public function show(){
+        $user = User::all();
+        dd($user);
     }
 }

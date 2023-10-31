@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::controller(UserController::class)->group(function(){
     Route::get('register', 'index')->name('user.register');
+    Route::get('show', 'show')->name('user.show');
     Route::post('user/store', 'store')->name('user.store');
 });
 

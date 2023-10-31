@@ -1,4 +1,4 @@
 @extends('default.default')
-@section('content')
+@section('titleContent')
     Ini Content
 @endsection
