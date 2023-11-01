@@ -1,4 +1,13 @@
 @extends('default.default')
 @section('titleContent')
-    Ini Content
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIM/NIDN</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+    </table>
 @endsection
