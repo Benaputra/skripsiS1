@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -23,8 +24,12 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function show(){
-        $user = User::all();
-        dd($user);
+    public function show(Request $request){
+        if($request->ajax){
+            $data = User::select('*'); {
+                return DataTables::of($data)
+                ->addIndexColumn();
+            }
+        }
     }
 }
