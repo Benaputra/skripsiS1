@@ -503,6 +503,7 @@ License: You must have a valid license purchased only from themeforest(the above
         
         <!-- BEGIN: JS Assets-->
             @include('default.js')
+            @stack('additional_js')
         <!-- END: JS Assets-->
     </body>
 </html>
