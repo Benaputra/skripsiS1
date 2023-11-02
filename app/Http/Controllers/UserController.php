@@ -21,7 +21,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request -> password),
         ]);
-        return view('login');
+        return redirect('/');
     }
 
     public function show(Request $request){
