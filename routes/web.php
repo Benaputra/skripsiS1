@@ -18,16 +18,14 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::controller(UserController::class)->group(function(){
-    Route::get('register', 'index')->name('user.register');
-    Route::get('user/show-data', 'show')->name('user.show');
-    Route::post('user/store', 'store')->name('user.store');
-});
-
-Route::get('/user', function(){
-    return view('user.index');
-});
-
 Route::get('/dashboard', function () {
     return view('default.default');
 });
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('register', 'register')->name('user.register');
+    // Route::get('user/show-data', 'show')->name('user.show');
+    Route::get('user', 'index')->name('user.index');
+    Route::post('user/store', 'store')->name('user.store');
+});
+

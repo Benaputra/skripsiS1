@@ -11,10 +11,18 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function register() {
         return view('register');
     }
     
+    public function index() {
+        if (request()->ajax()) {
+            $users = User::query();
+            return DataTables::of($users)
+                ->make();
+        }
+        return view('user.index');
+    }
     public function store(Request $request){
         $ex = User::create([
             'name' => $request->name,
@@ -25,21 +33,23 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function show(Request $request){
-        // $data = User::all();
-        // return $data;
-        if($request->ajax){
-            $data = User::all(); {
-                return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href = "#" class="edit btn btn-sucess btn-sm">Edit</a><a href = "#" class="edit btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumn(['action'])
-                ->make(true);
-            }
-            return view('user.index');
-        }
-    }
+    // public function show(Request $request){
+    //     // $data = User::all();
+    //     // return $data;
+    //     if($request->ajax){
+
+    //         // $data = User::all(); {
+    //         //     return DataTables::of($data)
+    //         //     ->addIndexColumn()
+    //         //     ->addColumn('action', function($row){
+    //         //         $actionBtn = '<a href = "#" class="edit btn btn-sucess btn-sm">Edit</a><a href = "#" class="edit btn btn-danger btn-sm">Delete</a>';
+    //         //         return $actionBtn;
+    //         //     })
+    //         //     ->rawColumn(['action'])
+    //         //     ->make(true);
+    //         // }
+    //         return view('user.index');
+           
+    //     }
+    // }
 }
