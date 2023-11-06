@@ -20,17 +20,13 @@ Route::get('/', function () {
 
 Route::controller(UserController::class)->group(function(){
     Route::get('register', 'index')->name('user.register');
-    Route::get('show', 'show')->name('user.show');
+    Route::get('user/show-data', 'show')->name('user.show');
     Route::post('user/store', 'store')->name('user.store');
 });
 
-Route::get('/user/show', function(){
+Route::get('/user', function(){
     return view('user.index');
 });
-
-// Route::get('register', function(){
-//     return view('register');
-// });
 
 Route::get('/dashboard', function () {
     return view('default.default');

@@ -238,6 +238,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div> --}}
                                     </div>
                                     <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                                        @yield('main_content')
                                         <table class="table table-report sm:mt-2">
                                             <thead>
                                                 <tr>
