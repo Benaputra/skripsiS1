@@ -32,7 +32,7 @@
             serverSide: true,
             ajax: '{{ url()->current() }}',
             columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+              {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable:false, orderable:false},
               {data: 'id', name: 'id'},
               {data: 'name', name: 'name'},
               {data: 'nim_nidn', name: 'nim_nidn'},
@@ -42,5 +42,5 @@
             ]
         });
      });
-    </script>
+</script>
 @endpush

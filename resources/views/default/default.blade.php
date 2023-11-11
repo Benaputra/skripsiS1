@@ -5,13 +5,10 @@
 <head>
 
     <!-- META DATA -->
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="E-Administrasi Fakultas Pertanian, Sains dan Teknologi">
-    <meta name="author" content="Akademik Fakultas Pertanian Sains dan Teknologi">
-    <meta name="keywords"
-        content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+   @include('default.metadata')
+        
+    <!-- TITLE -->
+    <title>@yield('title', 'E-Administrasi Fakultas Pertanian Sains dan Teknologi') </title>
 
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/images/brand/favicon.ico') }}">
@@ -21,9 +18,7 @@
 
     <!-- Choices JS -->
     <script src="{{ asset('template/assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
-
-    <!-- TITLE -->
-    <title>@yield('title', 'E-Administrasi Fakultas Pertanian Sains dan Teknologi') </title>
+    
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('template/assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -43,6 +38,11 @@
     
     <!-- Choices Css -->
     <link rel="stylesheet" href="{{ asset('template/assets/libs/choices.js/public/assets/styles/choices.min.css') }}">
+
+    {{-- Datatable CSS--}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
     
 
 
@@ -51,7 +51,7 @@
 
 <body class="app sidebar-mini">
 
-<!-- Start Switcher -->
+ <!-- Start Switcher -->
     @include('default.switcher')
 <!-- End Switcher -->
 
@@ -75,7 +75,6 @@
 
                 <!-- Start::header-content-left -->
                 <div class="header-content-left align-items-center">
-
                     <div class="header-element">
                         <div class="horizontal-logo">
                             <a href="index.html" class="header-logo">
@@ -86,7 +85,6 @@
                             </a>
                         </div>
                     </div>
-
                     <!-- Start::header-element -->
                     <div class="header-element">
                         <!-- Start::header-link -->
@@ -111,66 +109,12 @@
                         <!-- End::header-link -->
                     </div>
                     <!-- End::header-element -->
-
-
                     <div class="main-header-center  d-none d-lg-block  header-link">
                         <input type="text" class="form-control" id="typehead" placeholder="Search for results..."
                             autocomplete="off">
                         <button class="btn pe-1"><i class="fe fe-search" aria-hidden="true"></i></button>
-                        <div id="headersearch" class="header-search">
-                            <div class="p-3">
-                                <div class="">
-                                    <p class="fw-semibold text-muted mb-2 fs-13">Recent Searches</p>
-                                    <div class="ps-2">
-                                        <a href="javascript:void(0);" class="search-tags"><i
-                                                class="fe fe-search me-2"></i>People<span></span></a>
-                                        <a href="javascript:void(0);" class="search-tags"><i
-                                                class="fe fe-search me-2"></i>Pages<span></span></a>
-                                        <a href="javascript:void(0);" class="search-tags"><i
-                                                class="fe fe-search me-2"></i>Articles<span></span></a>
-                                    </div>
-                                </div>
-                                <div class="mt-3">
-                                    <p class="fw-semibold text-muted mb-2 fs-13">Apps and pages</p>
-                                    <ul class="ps-2">
-                                        <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                                            <a href="calendar2.html"><span><i
-                                                        class='bi bi-calendar me-2 fs-14 bg-primary-transparent avatar rounded-circle '></i>Calendar</span></a>
-                                        </li>
-                                        <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                                            <a href="email-inbox.html"><span><i
-                                                        class='bi bi-envelope me-2 fs-14 bg-primary-transparent avatar rounded-circle'></i>Mail</span></a>
-                                        </li>
-                                        <li class="p-1 d-flex align-items-center text-muted mb-2 search-app">
-                                            <a href="buttons.html"><span><i
-                                                        class='bi bi-dice-1 me-2 fs-14 bg-primary-transparent avatar rounded-circle '></i>Buttons</span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="mt-3">
-                                    <p class="fw-semibold text-muted mb-2 fs-13">Links</p>
-                                    <ul class="ps-2">
-                                        <li class="p-1 align-items-center text-muted mb-1 search-app">
-                                            <a href="javascript:void(0);"
-                                                class="text-primary"><u>http://spruko/html/spruko.com</u></a>
-                                        </li>
-                                        <li class="p-1 align-items-center text-muted mb-1 search-app">
-                                            <a href="javascript:void(0);"
-                                                class="text-primary"><u>http://spruko/demo/spruko.com</u></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="py-3 border-top px-0">
-                                <div class="text-center">
-                                    <a href="javascript:void(0);"
-                                        class="text-primary text-decoration-underline fs-15">View all</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- header search -->
-
                 </div>
                 <!-- End::header-content-left -->
 
@@ -185,7 +129,6 @@
                     <div class="navbar navbar-collapse responsive-navbar p-0">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                             <div class="d-flex align-items-center">
-
                                 <!-- Start::header-element -->
                                 <div class="header-element header-theme-mode">
                                     <!-- Start::header-link|layout-setting -->
@@ -207,6 +150,7 @@
                                             </svg>
                                             <!-- End::header-link-icon -->
                                         </span>
+                                        {{-- SWITCHING TO DARK MODE --}}
                                         <span class="dark-layout">
                                             <!-- Start::header-link-icon -->
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -237,194 +181,6 @@
                                         </svg>
                                     </a>
                                     <!-- End::header-link -->
-                                </div>
-                                <!-- End::header-element -->
-
-                                <!-- Start::header-element -->
-                                <div class="header-element dropdown-center cart-dropdown">
-                                    <!-- Start::header-link|dropdown-toggle -->
-                                    <a href="javascript:void(0);" class="header-link dropdown-toggle"
-                                        data-bs-toggle="dropdown">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="header-link-icon"
-                                            viewBox="0 0 24 24">
-                                            <path d="M0 0h24v24H0V0z" fill="none" />
-                                            <path
-                                                d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-                                        </svg>
-                                        <span class="badge bg-primary rounded-pill header-icon-badge"
-                                            id="cart-icon-badge">5</span>
-                                    </a>
-                                    <!-- End::header-link|dropdown-toggle -->
-                                    <!-- Start::main-header-dropdown -->
-                                    <div class="main-header-dropdown dropdown-menu dropdown-menu-end"
-                                        data-popper-placement="none">
-                                        <div class="p-3 border-bottom">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <p class="mb-0 fs-15 fw-semibold">Cart Items</p>
-                                                <span class="badge bg-secondary-transparent" id="cart-data">5
-                                                    Items</span>
-                                            </div>
-                                        </div>
-                                        <ul class="mb-0 overflow-auto" id="header-cart-items-scroll">
-                                            <li class="dropdown-item">
-                                                <div class="d-flex align-items-start cart-dropdown-item">
-                                                    <img src="{{ asset('template/assets/images/products/1.jpg') }}" alt="img"
-                                                        class="avatar avatar-md br-5 me-3">
-                                                    <div class="flex-grow-1">
-                                                        <div
-                                                            class="d-flex align-items-start justify-content-between mb-0">
-                                                            <div class="mb-0 fs-14 fw-semibold">
-                                                                <a href="cart.html" class="text-dark">SomeThing
-                                                                    Phone</a>
-                                                            </div>
-                                                            <div>
-                                                                <span class="fs-15 mb-1">$1,299.00</span>
-                                                                <a href="javascript:void(0);"
-                                                                    class="header-cart-remove float-end dropdown-item-close"><i
-                                                                        class="ti ti-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="min-w-fit-content d-flex align-items-start justify-content-between">
-                                                            <ul class="header-product-item">
-                                                                <li>Quantity: 1</li>
-                                                                <li>Size: XL</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <div class="d-flex align-items-start cart-dropdown-item">
-                                                    <img src="{{ asset('template/assets/images/products/2.jpg') }}" alt="img"
-                                                        class="avatar avatar-md br-5 me-3">
-                                                    <div class="flex-grow-1">
-                                                        <div
-                                                            class="d-flex align-items-start justify-content-between mb-0">
-                                                            <div class="mb-0 fs-14 text-dark fw-semibold">
-                                                                <a href="cart.html" class="text-dark">Stop Watch</a>
-                                                            </div>
-                                                            <div>
-                                                                <span class="fs-15 mb-1">$179.29</span>
-                                                                <a href="javascript:void(0);"
-                                                                    class="header-cart-remove float-end dropdown-item-close"><i
-                                                                        class="ti ti-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="min-w-fit-content d-flex align-items-start justify-content-between">
-                                                            <ul class="header-product-item">
-                                                                <li>Quantity: 2</li>
-                                                                <li>Size: L</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <div class="d-flex align-items-start cart-dropdown-item">
-                                                    <img src="{{ asset('template/assets/images/products/1.jpg') }}" alt="img"
-                                                        class="avatar avatar-md br-5 me-3">
-                                                    <div class="flex-grow-1">
-                                                        <div
-                                                            class="d-flex align-items-start justify-content-between mb-0">
-                                                            <div class="mb-0 fs-14 text-dark fw-semibold">
-                                                                <a href="cart.html" class="text-dark">Photo
-                                                                    Frame</a>
-                                                            </div>
-                                                            <div>
-                                                                <span class="fs-15 mb-1">$29.00</span>
-                                                                <a href="javascript:void(0);"
-                                                                    class="header-cart-remove float-end dropdown-item-close"><i
-                                                                        class="ti ti-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="min-w-fit-content d-flex align-items-start justify-content-between">
-                                                            <ul class="header-product-item">
-                                                                <li>Quantity: 5</li>
-                                                                <li>Size: M</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <div class="d-flex align-items-start cart-dropdown-item">
-                                                    <img src="{{ asset('template/assets/images/products/3.jpg') }}" alt="img"
-                                                        class="avatar avatar-md br-5 me-3">
-                                                    <div class="flex-grow-1">
-                                                        <div
-                                                            class="d-flex align-items-start justify-content-between mb-0">
-                                                            <div class="mb-0 fs-14 text-dark fw-semibold">
-                                                                <a href="cart.html" class="text-dark">Kikon
-                                                                    Camera</a>
-                                                            </div>
-                                                            <div>
-                                                                <span class="fs-15 mb-1">$4,999.00</span>
-                                                                <a href="javascript:void(0);"
-                                                                    class="header-cart-remove float-end dropdown-item-close"><i
-                                                                        class="ti ti-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="min-w-fit-content d-flex align-items-start justify-content-between">
-                                                            <ul class="header-product-item">
-                                                                <li>Quantity: 2</li>
-                                                                <li>Size: XXL</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <div class="d-flex align-items-start cart-dropdown-item">
-                                                    <img src="{{ asset('template/assets/images/products/5.jpg') }}" alt="img"
-                                                        class="avatar avatar-md br-5 me-3">
-                                                    <div class="flex-grow-1">
-                                                        <div
-                                                            class="d-flex align-items-start justify-content-between mb-0">
-                                                            <div class="mb-0 fs-14 text-dark fw-semibold">
-                                                                <a href="cart.html" class="text-dark">Canvas
-                                                                    Shoes</a>
-                                                            </div>
-                                                            <div>
-                                                                <span class="fs-15 mb-1">$129.00</span>
-                                                                <a href="javascript:void(0);"
-                                                                    class="header-cart-remove float-end dropdown-item-close"><i
-                                                                        class="ti ti-trash"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="min-w-fit-content d-flex align-items-start justify-content-between">
-                                                            <ul class="header-product-item">
-                                                                <li>Quantity: 4</li>
-                                                                <li>Size: XS</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="p-3 empty-header-item border-top">
-                                            <div class="d-grid">
-                                                <a href="checkout.html" class="btn btn-primary">Proceed to
-                                                    checkout</a>
-                                            </div>
-                                        </div>
-                                        <div class="p-5 empty-item d-none">
-                                            <div class="text-center">
-                                                <span class="avatar avatar-xl rounded-2 bg-warning-transparent">
-                                                    <i class="ri-shopping-cart-2-line fs-2"></i>
-                                                </span>
-                                                <h6 class="fw-bold mb-1 mt-3">Your Cart is Empty</h6>
-                                                <a href="shop.html" class="btn btn-primary btn-wave btn-sm m-1"
-                                                    data-abc="true">Back to Shop <i
-                                                        class="bi bi-arrow-right ms-1"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End::main-header-dropdown -->
                                 </div>
                                 <!-- End::header-element -->
 
@@ -596,8 +352,6 @@
                                 </div>
                                 <!-- End::header-element -->
 
-
-
                                 <!-- Start::header-element -->
                                 <div class="header-element header-fullscreen">
                                     <!-- Start::header-link -->
@@ -744,7 +498,7 @@
                 <!-- End::slide -->
 
                 <!-- Start::slide__category -->
-                <li class="slide__category"><span class="category-name">Dosen</span></li>
+                <li class="slide__category"><span class="category-name">PAGES</span></li>
                 <!-- End::slide__category -->
 
                 <!-- Start::slide -->
@@ -756,152 +510,58 @@
                                 d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0-11.47L17.74 9 12 13.47 6.26 9 12 4.53z">
                             </path>
                         </svg>
-                        <span class="side-menu__label">Pages</span>
+                        <span class="side-menu__label">Manajemen User</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
-                        <li class="slide">
-                            <a href="email-inbox.html" class="side-menu__item">Mail-Inbox</a>
-                        </li>
-                        <li class="slide">
-                            <a href="gallery.html" class="side-menu__item">Gallery</a>
+                        <li class="slide side-menu__label1">
+                            <a href="javascript:void(0);"></a>
                         </li>
                         <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">Extension
+                            <a href="javascript:void(0);" class="side-menu__item">User
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="about.html" class="side-menu__item">About Company</a>
+                                    <a href="{{ url('user') }}" class="side-menu__item">Show Data</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="faq.html" class="side-menu__item">FAQS</a>
+                                    <a href="empty.html" class="side-menu__item">Edit Data</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">Mahasiswa
+                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                            <ul class="slide-menu child2">
+                                <li class="slide">
+                                    <a href="blog-post.html" class="side-menu__item">Blog Post</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="terms.html" class="side-menu__item">Terms</a>
+                                    <a href="empty.html" class="side-menu__item">Empty Page</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">Dosen
+                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                            <ul class="slide-menu child2">
+                                <li class="slide">
+                                    <a href="blog-post.html" class="side-menu__item">Blog Post</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="empty.html" class="side-menu__item">Empty Page</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <!-- End::slide -->
-
-                <!-- Start::slide -->
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="side-menu__icon">
-                            <path d="M0 0h24v24H0V0z" fill="none"></path>
-                            <path
-                                d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0-11.47L17.74 9 12 13.47 6.26 9 12 4.53z">
-                            </path>
-                        </svg>
-                        <span class="side-menu__label">Pages</span>
-                        <i class="fe fe-chevron-right side-menu__angle"></i>
-                    </a>
-                    <ul class="slide-menu child1">
-                        <li class="slide">
-                            <a href="email-inbox.html" class="side-menu__item">Mail-Inbox</a>
-                        </li>
-                        <li class="slide">
-                            <a href="gallery.html" class="side-menu__item">Gallery</a>
-                        </li>
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">Extension
-                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="about.html" class="side-menu__item">About Company</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="faq.html" class="side-menu__item">FAQS</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="terms.html" class="side-menu__item">Terms</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <!-- End::slide -->
-
-                <!-- Start::slide__category -->
-                <li class="slide__category"><span class="category-name">Mahasiswa</span></li>
-                <!-- End::slide__category -->
-
-                <!-- Start::slide -->
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="side-menu__icon">
-                            <path d="M0 0h24v24H0V0z" fill="none"></path>
-                            <path
-                                d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0-11.47L17.74 9 12 13.47 6.26 9 12 4.53z">
-                            </path>
-                        </svg>
-                        <span class="side-menu__label">Pages</span>
-                        <i class="fe fe-chevron-right side-menu__angle"></i>
-                    </a>
-                    <ul class="slide-menu child1">
-                        <li class="slide">
-                            <a href="email-inbox.html" class="side-menu__item">Mail-Inbox</a>
-                        </li>
-                        <li class="slide">
-                            <a href="gallery.html" class="side-menu__item">Gallery</a>
-                        </li>
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">Extension
-                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="about.html" class="side-menu__item">About Company</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="faq.html" class="side-menu__item">FAQS</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="terms.html" class="side-menu__item">Terms</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <!-- End::slide -->
-                <!-- Start::slide -->
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="side-menu__icon">
-                            <path d="M0 0h24v24H0V0z" fill="none"></path>
-                            <path
-                                d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0-11.47L17.74 9 12 13.47 6.26 9 12 4.53z">
-                            </path>
-                        </svg>
-                        <span class="side-menu__label">Pages</span>
-                        <i class="fe fe-chevron-right side-menu__angle"></i>
-                    </a>
-                    <ul class="slide-menu child1">
-                        <li class="slide">
-                            <a href="email-inbox.html" class="side-menu__item">Mail-Inbox</a>
-                        </li>
-                        <li class="slide">
-                            <a href="gallery.html" class="side-menu__item">Gallery</a>
-                        </li>
-                        <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">Extension
-                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="about.html" class="side-menu__item">About Company</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="faq.html" class="side-menu__item">FAQS</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="terms.html" class="side-menu__item">Terms</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <!-- End::slide -->
-
+            </ul>
+            <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+                    width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z">
+                    </path>
+                </svg></div>
         </nav>
         <!-- End::nav -->
 
@@ -920,7 +580,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Extension</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@yield('titleContent, Empty')</li>
+                            <li class="breadcrumb-item active" aria-current="page">Empty</li>
                         </ol>
                     </div> 
                 </div>
@@ -933,6 +593,7 @@
                         <div class="row ">
                             <div class="col-md-12">
                                 @yield('main_content')
+                                <h1>ini isi content</h1>
                             </div>
                         </div>
                         <!-- ROW-1 CLOSED -->
@@ -1010,11 +671,22 @@
         
 
         <!-- FOOTER -->
-        @include('default.footer')
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © <span id="year"></span> <a href="javascript:void(0);">Vexel</a>. Designed with <span
+                            class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"> Spruko </a> All
+                        rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
         <!-- FOOTER CLOSED -->
 
     </div>
 
+    
 <!-- Scroll To Top -->
 <div class="scrollToTop">
     <span class="arrow"><i class="fa fa-angle-up fs-20"></i></span>
@@ -1022,6 +694,12 @@
 <!-- Scroll To Top -->
 
 <div id="responsive-overlay"></div>
+
+
+{{-- JQUERY --}}
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+ @stack('additional_js')
+
 
 <!-- Popper JS -->
 <script src="{{ asset('template/assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
@@ -1051,7 +729,17 @@
 <!-- CUSTOM JS -->
 <script src="{{ asset('template/assets/js/custom.js') }}"></script>
 
-@stack('additional_js')
+<!-- Datatables Cdn -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="{{ asset('template/assets/js/table-data.js') }}"></script>
 
 </body>
 
