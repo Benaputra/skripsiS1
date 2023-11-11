@@ -1,79 +1,131 @@
-<!DOCTYPE html>
-<!--
-Template Name: Icewall - HTML Admin Dashboard Template
-Author: Left4code
-Website: http://www.left4code.com/
-Contact: muhammadrizki@left4code.com
-Purchase: https://themeforest.net/user/left4code/portfolio
-Renew Support: https://themeforest.net/user/left4code/portfolio
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<html lang="en" class="light">
-    <!-- BEGIN: Head -->
-    <head>
-        <meta charset="utf-8">
-        <link href="template/dist/images/logo.svg" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="FASTA UPB (E-Administration Fakultas Pertanian Sains dan Teknologi).">
-        <meta name="keywords" content="Created by Abang Roudhi Benaputra @2023 ">
-        <meta name="author" content="LEFT4CODE">
-        <title>Register FASTA UPB</title>
-        <!-- BEGIN: CSS Assets-->
-        @include('default.css')
-        <!-- END: CSS Assets-->
-    </head>
-    <!-- END: Head -->
-    <body class="login">
-        <div class="container sm:px-10">
-            <div class="block xl:grid grid-cols-2 gap-4">
-                <!-- BEGIN: Register Info -->
-                <div class="hidden xl:flex flex-col min-h-screen">
-                    <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone - HTML Admin Template" class="w-6" src="template/dist/images/logo.svg">
-                        <span class="text-white text-lg ml-3"> FASTA UPB </span> 
-                    </a>
-                    <div class="my-auto">
-                        <img alt="Midone - HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="template/dist/images/illustration.svg">
-                        <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                            A few more clicks to 
-                            <br>
-                            sign up to your account.
+<!doctype html>
+<html lang="en"  dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark">
+
+<head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Vexel – Bootstrap 5  Admin & Dashboard Template">
+    <meta name="author" content="Spruko Technologies Private Limited">
+    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+
+     <!-- FAVICON -->
+     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/images/brand/favicon.ico') }}">
+ 
+     <!-- Main Theme Js -->
+     <script src="{{ asset('template/assets/js/authentication-main.js') }}"></script>
+ 
+     <!-- TITLE -->
+     <title>@yield('title', 'E-Administrasi Fakultas Pertanian Sains dan Teknologi') </title>
+ 
+     <!-- BOOTSTRAP CSS -->
+     <link id="style" href="{{ asset('template/assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+ 
+     <!-- STYLE CSS -->
+     <link href="{{ asset('template/assets/css/style.css') }}" rel="stylesheet">
+ 
+     <!--- FONT-ICONS CSS -->
+     <link href="{{ asset('template/assets/css/icons.css') }}" rel="stylesheet">
+
+
+</head>
+
+<body class="app sidebar-mini ltr login-img">
+    
+   <!-- Start Switcher -->
+    @include('default.switcher')
+<!-- End Switcher -->
+
+    <!-- BACKGROUND-IMAGE -->
+    <div class="">
+
+        <!-- PAGE -->
+        <div class="page">
+                <!-- CONTAINER OPEN -->
+                <div class="">
+                    <div class="text-center">
+                        <a href="index.html"><img src="{{ asset('template/assets/images/brand/desktop-dark.png') }}" class="header-brand-img m-0" alt=""></a>
+                    </div>
+                </div>
+                <div class="container-lg">
+                    <div class="row mt-4 justify-content-center mx-0">
+                        <div class="col-xl-4 col-lg-6">
+                            <div class="card shadow-none">
+                                <div class="card-body p-sm-6">
+                                    <div class="text-center mb-4">
+                                        <h4 class="mb-1">Sign Up</h4>
+                                        <p>Sign up to your account to continue.</p>
+                                    </div>
+                                    <div class="row">
+                                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="mb-2 fw-500">Nama Lengkap<span class="text-danger ms-1">*</span></label>
+                                                <input class="form-control ms-0" type="text" placeholder="Nama Lengkap" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="mb-2 fw-500">NIM/NIDN<span class="text-danger ms-1">*</span></label>
+                                                <input class="form-control ms-0" type="text" placeholder="NIM / NIDN" name="nim_nidn">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="mb-2 fw-500">Email<span class="text-danger ms-1">*</span></label>
+                                                <input class="form-control ms-0" type="email" placeholder="E-mail" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="mb-2 fw-500">Create a Password<span class="text-danger ms-1">*</span></label>
+                                                <div class="input-group has-validation">
+                                                    <input type="password" class="form-control ms-0 border-end-0" placeholder="Create a Password" name="password"  id="signup-password" 
+                                                        required>
+                                                     <button class="btn btn-light" onclick="createpassword('signup-password',this)" type="button" id="button-addon2"><i class="ri-eye-off-line align-middle"></i></button>
+                                                    {{-- <div class="invalid-feedback">
+                                                        Please choose a username.
+                                                    </div> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="d-grid mb-3">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                {{-- <a href="index.html" class="btn btn-primary"> Create an Account</a> --}}
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="mb-0 tx-14">Sudah mempunyai akunt ?
+                                                    <a href="login.html" class="tx-primary ms-1 text-decoration-underline">Login</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-xl-9 d-none"></div>
                     </div>
                 </div>
-                <!-- END: Register Info -->
-                <!-- BEGIN: Register Form -->
-                <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-                    <div class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
-                            Sign Up
-                        </h2>
-                        <div class="intro-x mt-8">
-                            <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <input type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Nama Lengkap" name="name">
-                                <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="NIM/NIDN" name="nim_nidn">
-                                <input type="text" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Email" name="email">
-                                <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" name="password">
-                            </div>
-                            {{-- <div class="intro-x flex items-center text-slate-600 dark:text-slate-500 mt-4 text-xs sm:text-sm">
-                                <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
-                                <label class="cursor-pointer select-none" for="remember-me">I agree to the Envato</label>
-                                <a class="text-primary dark:text-slate-200 ml-1" href="">Privacy Policy</a>. 
-                            </div> --}}
-                            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                                <button type="submit" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Register</button>
-                                <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">
-                                    <a href=""></a>Sign in</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- END: Register Form -->
-            </div>
+            <!-- CONTAINER CLOSED -->
         </div>
-        <!-- BEGIN: JS Assets-->
-        @include('default.js')
-        <!-- END: JS Assets-->
-    </body>
+        <!-- End PAGE -->
+
+
+    </div>
+    <!-- Custom-Switcher JS -->
+    <script src="{{ asset('template/assets/js/custom-switcher.min.js') }}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('template/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+    <!-- Show Password JS -->
+    <script src="{{ asset('template/assets/js/show-password.js') }}"></script>
+
+</body>
+
 </html>

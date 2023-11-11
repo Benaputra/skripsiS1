@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('default.default');
 });
 
-// Route::get('/', function () {
-//     return view('login');
-// });
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::get('/dashboard', function () {
     return view('default.default');
@@ -33,3 +33,6 @@ Route::controller(UserController::class)->group(function(){
     Route::post('user/store', 'store')->name('user.store');
 });
 
+Route::get('blank', function(){
+    return view('default.blank');
+});
