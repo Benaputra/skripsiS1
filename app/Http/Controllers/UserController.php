@@ -15,10 +15,16 @@ class UserController extends Controller
         return view('register');
     }
     
-    public function index() {
-        if (request()->ajax()) {
-            $users = User::query();
-            return DataTables::of($users)
+    public function index(Request $request) {
+        if ($request->ajax()) {
+            $users = User::all();
+                return DataTables::of($users)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                $actionBtn = '<a href = "#" class="edit btn btn-success"><i class="fe fe-edit"></i></a><a href = "#" class="edit btn btn-danger"><i class="fe fe-delete"></i></a>';
+                return $actionBtn;
+                })
+                ->rawColumns(['action'])
                 ->make();
         }
         return view('user.index');
@@ -32,24 +38,4 @@ class UserController extends Controller
         ]);
         return redirect('/');
     }
-
-    // public function show(Request $request){
-    //     // $data = User::all();
-    //     // return $data;
-    //     if($request->ajax){
-
-    //         // $data = User::all(); {
-    //         //     return DataTables::of($data)
-    //         //     ->addIndexColumn()
-    //         //     ->addColumn('action', function($row){
-    //         //         $actionBtn = '<a href = "#" class="edit btn btn-sucess btn-sm">Edit</a><a href = "#" class="edit btn btn-danger btn-sm">Delete</a>';
-    //         //         return $actionBtn;
-    //         //     })
-    //         //     ->rawColumn(['action'])
-    //         //     ->make(true);
-    //         // }
-    //         return view('user.index');
-           
-    //     }
-    // }
 }
