@@ -31,7 +31,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('user', 'index')->name('user.index');
     Route::get('user/data', 'getUserData')->name('user.getUserData');
     Route::post('user/store', 'store')->name('user.store');
-    Route::get('user/get_data_user', 'getUpdateData')->name('user.getUpdateData');
+    Route::post('user/get_data_user', 'getUpdateData')->name('user.getUpdateData');
 });
 
 Route::get('blank', function(){
