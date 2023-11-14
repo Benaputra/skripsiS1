@@ -6,7 +6,7 @@
 
     <!-- META DATA -->
    @include('default.metadata')
-        
+   <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- TITLE -->
     <title>@yield('title', 'E-Administrasi Fakultas Pertanian Sains dan Teknologi') </title>
 
@@ -522,7 +522,7 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="{{ url('user') }}" class="side-menu__item">Show Data</a>
+                                    <a href="{{ route('user.index') }}" class="side-menu__item">Show Data</a>
                                 </li>
                                 <li class="slide">
                                     <a href="empty.html" class="side-menu__item">Edit Data</a>
