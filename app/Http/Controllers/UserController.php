@@ -49,27 +49,20 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        User::updateOrCreate([
+            'id' => $request->id
+        ],
+        [
+            'name' => $request->name,
+            'nim_nidn' => $request->nim_nidn,
+            'email' => $request->email,
+            'password' => Hash::make($request -> password),
+        ]);
+        return response()->json(['success'=> 'Data user berhasil ditambahkan']);
     }
 
     /**
@@ -82,18 +75,11 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+        return response()->json(['success','Data User berhasil dihapus']);
     }
 }

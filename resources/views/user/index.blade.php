@@ -26,7 +26,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="userForm" name="userForm">
+                    <input type="hidden" id="id" name="id">
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -43,16 +44,16 @@
                     <label for="recipient-name" class="col-form-label">Password:</label>
                     <input type="password" class="form-control" id="password">
                 </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="id" name="id">
-                <button type="button" class="btn btn-primary" id="btn-save">Simpan</button>
+
+                <button type="submit" class="btn btn-primary" id="btnSave">Simpan</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
-            </div>
         </div>
+    </form>
         </div>
+    </div>
 </div>
 </div>
 @endsection
@@ -74,7 +75,7 @@
       var table = $('#dataUser').DataTable({
           processing: true,
           serverSide: true,
-          ajax: "{{ route('dummy.index') }}",
+          ajax: "{{ route('users.index') }}",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'id', name: 'id'},
@@ -87,7 +88,7 @@
     //   Click to Edit Button
       $('body').on('click', '.updateUser', function () {
         var user_id = $(this).data('id');
-        $.get("{{ route('dummy.index') }}" +'/' + user_id +'/edit', function (data) {
+        $.get("{{ route('users.index') }}" +'/' + user_id +'/edit', function (data) {
             $('#updateModal').modal('show');
             $('#id').val(data.id);
             $('#name').val(data.name);
@@ -97,13 +98,35 @@
         })
   
       });  
+    // Update Data
+        $('btnSave').click(function (e) {
+            e.preventDefault();
+            $(this).html('Sending .. ');
+
+            $.ajax({
+                data: $('#userForm').serialize(),
+                url: "{{ route('users.store') }}",
+                type: "POST",
+                dataType: 'json',
+                success : function(data) {
+                    $('#userForm').trigger("reset");
+                    $('#updateModal').modal('hide');
+                    table.draw();
+                },
+                error: function(data) {
+                    console.log('Error: ', data);
+                    $('#btnSave').html('Save Changes');
+                }
+            });
+        });
+
     //   Delete Product Code
-      $('body').on('click', '.deleteProduct', function () {
-          var product_id = $(this).data("id");
+      $('body').on('click', '.deleteUser', function () {
+          var user_id = $(this).data("id");
           confirm("Are You sure want to delete !");
           $.ajax({
               type: "DELETE",
-              url: "{{ route('dummy.store') }}"+'/'+product_id,
+              url: "{{ route('users.store') }}"+'/'+user_id,
               success: function (data) {
                   table.draw();
               },
