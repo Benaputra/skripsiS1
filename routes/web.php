@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\dummyController;
 use App\Http\Controllers\UserController;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,17 +24,19 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post('register-store',[UserController::class,'storeRegister'])->name('register.store');
+
 Route::get('/dashboard', function () {
     return view('default.default');
 });
 
-Route::controller(UserController::class)->group(function(){
-    Route::get('register', 'register')->name('user.register');
-    Route::get('user', 'index')->name('user.index');
-    Route::get('user/data', 'getUserData')->name('user.getUserData');
-    Route::post('user/store', 'store')->name('user.store');
-    Route::post('user/get_data_user', 'getUpdateData')->name('user.getUpdateData');
-});
+Route::resource('dummy', dummyController::class);
+
+Route::resource('users',UserController::class);
 
 Route::get('blank', function(){
     return view('default.blank');

@@ -59,7 +59,7 @@
                                         <p>Sign up to your account to continue.</p>
                                     </div>
                                     <div class="row">
-                                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                         <div class="col-sm-12">
                                             <div class="mb-3">

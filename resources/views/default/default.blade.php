@@ -522,7 +522,7 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="{{ route('user.index') }}" class="side-menu__item">Show Data</a>
+                                    <a href="{{ route('users.index') }}" class="side-menu__item">Show Data</a>
                                 </li>
                                 <li class="slide">
                                     <a href="empty.html" class="side-menu__item">Edit Data</a>

@@ -5,29 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
-class UserController extends Controller
+class dummyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
-     public function register() {
-        return view('register');
-    }
-
-    public function storeRegister(Request $request){
-        $ex = User::create([
-            'name' => $request->name,
-            'nim_nidn' => $request->nim_nidn,
-            'email' => $request->email,
-            'password' => Hash::make($request -> password),
-        ]);
-        return redirect('/');
-    }
-
     public function index(Request $request)
     {
         if ($request -> ajax()) {
@@ -45,7 +29,7 @@ class UserController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('user.index');
+        return view('dummy.index');
     }
 
     /**

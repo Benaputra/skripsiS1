@@ -29,15 +29,15 @@
                 <form>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">NIM/NIDN:</label>
-                    <input type="text" class="form-control" id="nim_nidn">
+                    <input type="text" class="form-control" id="nim_nidn" name="nim_nidn">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">E-Mail:</label>
-                    <input type="emai" class="form-control" id="email">
+                    <input type="emai" class="form-control" id="email" name="email">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Password:</label>
@@ -46,7 +46,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="id" value="0">
+                <input type="hidden" id="id" name="id">
                 <button type="button" class="btn btn-primary" id="btn-save">Simpan</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
@@ -62,48 +62,56 @@
     console.log( "yuhu!" );
 });
 </script>
-{{-- Show Data --}}
 <script type="text/javascript">
-   // CSRF Token
-   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content'); 
-    $(function() {
-       $('#dataUser').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('user.getUserData')}}",
-            columns: [
-              {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable:false, orderable:false},
+
+    $(function () {
+      $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+      });
+    //   Render DataTable
+      var table = $('#dataUser').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('dummy.index') }}",
+          columns: [
+              {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'id', name: 'id'},
               {data: 'name', name: 'name'},
               {data: 'nim_nidn', name: 'nim_nidn'},
               {data: 'email', name: 'email'},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-    
-            ]
-        });
-     });
-     // Update record
-     $('#dataUser').on('click','.updateUser',function(){
-            var id = $(this).data('id');
-            $('#id').val(id);
-            // AJAX request
-            $.ajax({
-                url: "{{ route('user.getUpdateData') }}",
-                type: 'POST',
-                data: {_token: CSRF_TOKEN,id: id},
-                dataType: 'json',
-                success: function(response){
-                    if(response.success == 1){
-                         $('#name').val(response.name);
-                         $('#nim_nidn').val(response.nim_nidn);
-                         $('#email').val(response.email);
-                         $('#password').val(response.password);
-                         dataUser.ajax.reload();
-                    }else {
-                         alert(id);
-                    }
-                }
-            });
-       });
-</script>
+          ]
+      });
+    //   Click to Edit Button
+      $('body').on('click', '.updateUser', function () {
+        var user_id = $(this).data('id');
+        $.get("{{ route('dummy.index') }}" +'/' + user_id +'/edit', function (data) {
+            $('#updateModal').modal('show');
+            $('#id').val(data.id);
+            $('#name').val(data.name);
+            $('#nim_nidn').val(data.nim_nidn);
+            $('#email').val(data.email);
+            $('#password').val(data.password);
+        })
+  
+      });  
+    //   Delete Product Code
+      $('body').on('click', '.deleteProduct', function () {
+          var product_id = $(this).data("id");
+          confirm("Are You sure want to delete !");
+          $.ajax({
+              type: "DELETE",
+              url: "{{ route('dummy.store') }}"+'/'+product_id,
+              success: function (data) {
+                  table.draw();
+              },
+              error: function (data) {
+                  console.log('Error:', data);
+              }
+          });
+      });
+    });
+  </script>
 @endpush
