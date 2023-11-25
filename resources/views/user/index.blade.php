@@ -4,6 +4,7 @@
 @endsection
 @section('main_content') 
 <button class="btn btn-info btn-sm form-group" id="createUser"> Add Data </button>
+<button type="button" class="btn btn-primary" id="success">Success Notification</button>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataUser">
             <thead>
@@ -62,6 +63,7 @@
     console.log( "yuhu!" );
 });
 </script>
+
 <script type="text/javascript">
 
     $(function () {
@@ -117,12 +119,12 @@
                 type: "POST",
                 dataType: 'json',
                 success: function (data) {
-                    // alert('Data successfully added/updated!');
                     $('#userForm').trigger("reset");
                     $('#userModal').modal('hide');
                     table.draw();
                     
                     // Show success alert
+                    alert('Data successfully added/updated!');
                 },
                 error: function (data) {
                     console.log('Error: ', data);
@@ -139,6 +141,7 @@
               type: "DELETE",
               url: "{{ route('user.store') }}"+'/'+user_id,
               success: function (data) {
+                alert('Data successfully deleted!');
                   table.draw();
               },
               error: function (data) {

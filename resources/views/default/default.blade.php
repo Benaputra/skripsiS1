@@ -13,40 +13,8 @@
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/images/brand/favicon.ico') }}">
 
-    <!-- Main Theme Js -->
-    <script src="{{ asset('template/assets/js/main.js') }}"></script>
-
-    <!-- Choices JS -->
-    <script src="{{ asset('template/assets/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    @include('default.css')
     
-
-    <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{ asset('template/assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- STYLE CSS -->
-    <link href="{{ asset('template/assets/css/style.css') }}" rel="stylesheet">
-
-    <!-- Simplebar Css -->
-    <link href="{{ asset('template/assets/libs/simplebar/simplebar.min.css') }}" rel="stylesheet">
-
-    <!--- FONT-ICONS CSS -->
-    <link href="{{ asset('template/assets/css/icons.css') }}" rel="stylesheet">
-
-    <!-- Color Picker Css -->
-    <link rel="stylesheet" href="{{ asset('template/assets/libs/flatpickr/flatpickr.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/libs/@simonwep/pickr/themes/nano.min.css') }}">
-    
-    <!-- Choices Css -->
-    <link rel="stylesheet" href="{{ asset('template/assets/libs/choices.js/public/assets/styles/choices.min.css') }}">
-
-    {{-- Datatable CSS--}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
-    
-
-
-
 </head>
 
 <body class="app sidebar-mini">
@@ -55,8 +23,6 @@
     @include('default.switcher')
 <!-- End Switcher -->
 
-
-    
 <!-- GLOBAL-LOADER -->
 <div id="loader">
     <img src="{{ asset('template/assets/images/loader.svg') }}" class="loader-img" alt="Loader">
@@ -683,7 +649,6 @@
             </div>
         </footer>
         <!-- FOOTER CLOSED -->
-
     </div>
 
     
@@ -695,51 +660,10 @@
 
 <div id="responsive-overlay"></div>
 
-
 {{-- JQUERY --}}
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
  @stack('additional_js')
-
-
-<!-- Popper JS -->
-<script src="{{ asset('template/assets/libs/@popperjs/core/umd/popper.min.js') }}"></script>
-
-<!-- Bootstrap JS -->
-<script src="{{ asset('template/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- Defaultmenu JS -->
-<script src="{{ asset('template/assets/js/defaultmenu.min.js') }}"></script>
-
-<!-- Node Waves JS-->
-<script src="{{ asset('template/assets/libs/node-waves/waves.min.js') }}"></script>
-
-<!-- Sticky JS -->
-<script src="{{ asset('template/assets/js/sticky.js') }}"></script>
-
-<!-- Simplebar JS -->
-<script src="{{ asset('template/assets/libs/simplebar/simplebar.min.js') }}"></script>
-<script src="{{ asset('template/assets/js/simplebar.js') }}"></script>
-
-<!-- Color Picker JS -->
-<script src="{{ asset('template/assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
-
-<!-- Custom-Switcher JS -->
-<script src="{{ asset('template/assets/js/custom-switcher.min.js') }}"></script>
-
-<!-- CUSTOM JS -->
-<script src="{{ asset('template/assets/js/custom.js') }}"></script>
-
-<!-- Datatables Cdn -->
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="{{ asset('template/assets/js/table-data.js') }}"></script>
+@include('default.js')
 
 </body>
 
