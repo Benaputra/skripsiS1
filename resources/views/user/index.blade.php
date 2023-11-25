@@ -2,13 +2,13 @@
 @section('titleContent')
     Data Mahasiswa
 @endsection
-@section('main_content')
+@section('main_content') 
+<button class="btn btn-info btn-sm form-group" id="createUser"> Add Data </button>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataUser">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>ID</th>
                     <th>Nama</th>
                     <th>NIM/NIDN</th>
                     <th>E-mail</th>
@@ -18,15 +18,15 @@
         </table>
     </div>
     <!-- Modal content-->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="inputModalLabel">Edit User</h1>
+                <h1 class="modal-title fs-5" id="modalHeading">Edit User</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="userForm" name="userForm">
+        <div class="modal-body">
+        <form id="userForm" name="userForm">
                     <input type="hidden" id="id" name="id">
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Nama Lengkap:</label>
@@ -46,8 +46,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-
-                <button type="submit" class="btn btn-primary" id="btnSave">Simpan</button>
+                <button type="submit" class="btn btn-primary" id="btnSave" value="create">Simpan</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
@@ -75,21 +74,30 @@
       var table = $('#dataUser').DataTable({
           processing: true,
           serverSide: true,
-          ajax: "{{ route('users.index') }}",
+          ajax: "{{ route('user.index') }}",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-              {data: 'id', name: 'id'},
               {data: 'name', name: 'name'},
               {data: 'nim_nidn', name: 'nim_nidn'},
               {data: 'email', name: 'email'},
               {data: 'action', name: 'action', orderable: false, searchable: false},
           ]
       });
+    //   Add New Data
+      $('#createUser').click(function() {
+                $('#btnSave').val("create-user");
+                $('#id').val('');
+                $('#userForm').trigger("reset");
+                $('#modalHeading').html("Create New User");
+                $('#userModal').modal('show');
+            });
     //   Click to Edit Button
       $('body').on('click', '.updateUser', function () {
         var user_id = $(this).data('id');
-        $.get("{{ route('users.index') }}" +'/' + user_id +'/edit', function (data) {
-            $('#updateModal').modal('show');
+        $.get("{{ route('user.index') }}" +'/' + user_id +'/edit', function (data) {
+            $('#btnSave').val("edit-user")
+            $('#userModal').modal('show');
+            $('#modalHeading').html("Edit User")
             $('#id').val(data.id);
             $('#name').val(data.name);
             $('#nim_nidn').val(data.nim_nidn);
@@ -98,22 +106,25 @@
         })
   
       });  
-    // Update Data
-        $('btnSave').click(function (e) {
+        // Update Data
+        $('#btnSave').click(function (e) {
             e.preventDefault();
             $(this).html('Sending .. ');
 
             $.ajax({
                 data: $('#userForm').serialize(),
-                url: "{{ route('users.store') }}",
+                url: "{{ route('user.store') }}",
                 type: "POST",
                 dataType: 'json',
-                success : function(data) {
+                success: function (data) {
+                    // alert('Data successfully added/updated!');
                     $('#userForm').trigger("reset");
-                    $('#updateModal').modal('hide');
+                    $('#userModal').modal('hide');
                     table.draw();
+                    
+                    // Show success alert
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log('Error: ', data);
                     $('#btnSave').html('Save Changes');
                 }
@@ -126,7 +137,7 @@
           confirm("Are You sure want to delete !");
           $.ajax({
               type: "DELETE",
-              url: "{{ route('users.store') }}"+'/'+user_id,
+              url: "{{ route('user.store') }}"+'/'+user_id,
               success: function (data) {
                   table.draw();
               },

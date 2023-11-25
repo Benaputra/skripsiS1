@@ -36,7 +36,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('dummy', dummyController::class);
 
-Route::resource('users',UserController::class);
+Route::resource('user',UserController::class);
 
 Route::get('blank', function(){
     return view('default.blank');
