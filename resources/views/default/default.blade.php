@@ -11,7 +11,7 @@
     <title>@yield('title', 'E-Administrasi Fakultas Pertanian Sains dan Teknologi') </title>
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/images/brand/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('template/assets/logo-fp-baru.ico') }}">
 
     @include('default.css')
     
