@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\dummyController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +36,11 @@ Route::get('/dashboard', function () {
     return view('default.default');
 });
 
-Route::resource('dummy', dummyController::class);
+// Route::resource('dummy', dummyController::class);
 
 Route::resource('user',UserController::class);
+Route::resource('role',RoleController::class);
+Route::resource('prodi',ProdiController::class);
 
 Route::get('blank', function(){
     return view('default.blank');

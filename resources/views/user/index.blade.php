@@ -4,7 +4,6 @@
 @endsection
 @section('main_content') 
 <button class="btn btn-info btn-sm form-group" id="createUser"> Add Data </button>
-<button type="button" class="btn btn-primary" id="success">Success Notification</button>
     <div class="table-responsive">
         <table class="table table-bordered" id="dataUser">
             <thead>
