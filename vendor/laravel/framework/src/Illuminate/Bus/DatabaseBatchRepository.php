@@ -313,6 +313,16 @@ class DatabaseBatchRepository implements PrunableBatchRepository
     }
 
     /**
+     * Rollback the last database transaction for the connection.
+     *
+     * @return void
+     */
+    public function rollBack()
+    {
+        $this->connection->rollBack();
+    }
+
+    /**
      * Serialize the given value.
      *
      * @param  mixed  $value
@@ -364,9 +374,9 @@ class DatabaseBatchRepository implements PrunableBatchRepository
             (int) $batch->failed_jobs,
             (array) json_decode($batch->failed_job_ids, true),
             $this->unserialize($batch->options),
-            CarbonImmutable::createFromTimestamp($batch->created_at),
-            $batch->cancelled_at ? CarbonImmutable::createFromTimestamp($batch->cancelled_at) : $batch->cancelled_at,
-            $batch->finished_at ? CarbonImmutable::createFromTimestamp($batch->finished_at) : $batch->finished_at
+            CarbonImmutable::createFromTimestamp($batch->created_at, date_default_timezone_get()),
+            $batch->cancelled_at ? CarbonImmutable::createFromTimestamp($batch->cancelled_at, date_default_timezone_get()) : $batch->cancelled_at,
+            $batch->finished_at ? CarbonImmutable::createFromTimestamp($batch->finished_at, date_default_timezone_get()) : $batch->finished_at
         );
     }
 

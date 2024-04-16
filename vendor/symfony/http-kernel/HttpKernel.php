@@ -51,13 +51,13 @@ class_exists(KernelEvents::class);
  */
 class HttpKernel implements HttpKernelInterface, TerminableInterface
 {
-    protected $dispatcher;
-    protected $resolver;
-    protected $requestStack;
+    protected EventDispatcherInterface $dispatcher;
+    protected ControllerResolverInterface $resolver;
+    protected RequestStack $requestStack;
     private ArgumentResolverInterface $argumentResolver;
     private bool $handleAllThrowables;
 
-    public function __construct(EventDispatcherInterface $dispatcher, ControllerResolverInterface $resolver, RequestStack $requestStack = null, ArgumentResolverInterface $argumentResolver = null, bool $handleAllThrowables = false)
+    public function __construct(EventDispatcherInterface $dispatcher, ControllerResolverInterface $resolver, ?RequestStack $requestStack = null, ?ArgumentResolverInterface $argumentResolver = null, bool $handleAllThrowables = false)
     {
         $this->dispatcher = $dispatcher;
         $this->resolver = $resolver;
@@ -92,8 +92,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
         } finally {
             $this->requestStack->pop();
 
-            if ($response instanceof StreamedResponse) {
-                $callback = $response->getCallback();
+            if ($response instanceof StreamedResponse && $callback = $response->getCallback()) {
                 $requestStack = $this->requestStack;
 
                 $response->setCallback(static function () use ($request, $callback, $requestStack) {
@@ -108,10 +107,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
         }
     }
 
-    /**
-     * @return void
-     */
-    public function terminate(Request $request, Response $response)
+    public function terminate(Request $request, Response $response): void
     {
         $this->dispatcher->dispatch(new TerminateEvent($this, $request, $response), KernelEvents::TERMINATE);
     }
@@ -119,7 +115,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
     /**
      * @internal
      */
-    public function terminateWithException(\Throwable $exception, Request $request = null): void
+    public function terminateWithException(\Throwable $exception, ?Request $request = null): void
     {
         if (!$request ??= $this->requestStack->getMainRequest()) {
             throw $exception;

@@ -2,13 +2,10 @@
 
 ## UNRELEASED
 
-## v10.1.0 - 08-20=9-2023
+## v11.0.0 - 11-14-2023
 
-- feat: support livewire 3 #51
-- fix: #50
-
-## v10.0.0 - 02-20-2023
-
-- feat: Laravel 10 support
-- feat: OpenSpout v4 support
- 
+- Laravel 11.x support
+- Use Pest for testing
+- Add Pint and Rector for code quality
+- Add GitHub Actions for CI/CD
+- Fix PhpStan issues

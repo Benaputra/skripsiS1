@@ -28,7 +28,7 @@ class CollectionConfigurator
     private ?array $parentPrefixes;
     private string|array|null $host = null;
 
-    public function __construct(RouteCollection $parent, string $name, self $parentConfigurator = null, array $parentPrefixes = null)
+    public function __construct(RouteCollection $parent, string $name, ?self $parentConfigurator = null, ?array $parentPrefixes = null)
     {
         $this->parent = $parent;
         $this->name = $name;
@@ -43,7 +43,7 @@ class CollectionConfigurator
         throw new \BadMethodCallException('Cannot serialize '.__CLASS__);
     }
 
-    public function __wakeup()
+    public function __wakeup(): void
     {
         throw new \BadMethodCallException('Cannot unserialize '.__CLASS__);
     }

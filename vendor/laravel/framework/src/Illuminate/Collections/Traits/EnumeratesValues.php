@@ -11,11 +11,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Illuminate\Support\HigherOrderCollectionProxy;
+use InvalidArgumentException;
 use JsonSerializable;
-use Symfony\Component\VarDumper\VarDumper;
 use Traversable;
 use UnexpectedValueException;
 use UnitEnum;
+use WeakMap;
 
 /**
  * @template TKey of array-key
@@ -162,7 +163,7 @@ trait EnumeratesValues
      * @param  (callable(int): TTimesValue)|null  $callback
      * @return static<int, TTimesValue>
      */
-    public static function times($number, callable $callback = null)
+    public static function times($number, ?callable $callback = null)
     {
         if ($number < 1) {
             return new static;
@@ -198,7 +199,7 @@ trait EnumeratesValues
     }
 
     /**
-     * Dump the items and end the script.
+     * Dump the given arguments and terminate execution.
      *
      * @param  mixed  ...$args
      * @return never
@@ -207,21 +208,18 @@ trait EnumeratesValues
     {
         $this->dump(...$args);
 
-        exit(1);
+        dd();
     }
 
     /**
      * Dump the items.
      *
+     * @param  mixed  ...$args
      * @return $this
      */
-    public function dump()
+    public function dump(...$args)
     {
-        (new Collection(func_get_args()))
-            ->push($this->all())
-            ->each(function ($item) {
-                VarDumper::dump($item);
-            });
+        dump($this->all(), ...$args);
 
         return $this;
     }
@@ -319,21 +317,27 @@ trait EnumeratesValues
      *
      * @template TEnsureOfType
      *
-     * @param  class-string<TEnsureOfType>  $type
+     * @param  class-string<TEnsureOfType>|array<array-key, class-string<TEnsureOfType>>  $type
      * @return static<TKey, TEnsureOfType>
      *
      * @throws \UnexpectedValueException
      */
     public function ensure($type)
     {
-        return $this->each(function ($item) use ($type) {
+        $allowedTypes = is_array($type) ? $type : [$type];
+
+        return $this->each(function ($item, $index) use ($allowedTypes) {
             $itemType = get_debug_type($item);
 
-            if ($itemType !== $type && ! $item instanceof $type) {
-                throw new UnexpectedValueException(
-                    sprintf("Collection should only include '%s' items, but '%s' found.", $type, $itemType)
-                );
+            foreach ($allowedTypes as $allowedType) {
+                if ($itemType === $allowedType || $item instanceof $allowedType) {
+                    return true;
+                }
             }
+
+            throw new UnexpectedValueException(
+                sprintf("Collection should only include [%s] items, but '%s' found at position %d.", implode(', ', $allowedTypes), $itemType, $index)
+            );
         });
     }
 
@@ -352,7 +356,7 @@ trait EnumeratesValues
      *
      * @template TMapSpreadValue
      *
-     * @param  callable(mixed): TMapSpreadValue  $callback
+     * @param  callable(mixed...): TMapSpreadValue  $callback
      * @return static<TKey, TMapSpreadValue>
      */
     public function mapSpread(callable $callback)
@@ -526,7 +530,7 @@ trait EnumeratesValues
      * @param  (callable($this): TWhenEmptyReturnType)|null  $default
      * @return $this|TWhenEmptyReturnType
      */
-    public function whenEmpty(callable $callback, callable $default = null)
+    public function whenEmpty(callable $callback, ?callable $default = null)
     {
         return $this->when($this->isEmpty(), $callback, $default);
     }
@@ -540,7 +544,7 @@ trait EnumeratesValues
      * @param  (callable($this): TWhenNotEmptyReturnType)|null  $default
      * @return $this|TWhenNotEmptyReturnType
      */
-    public function whenNotEmpty(callable $callback, callable $default = null)
+    public function whenNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->when($this->isNotEmpty(), $callback, $default);
     }
@@ -554,7 +558,7 @@ trait EnumeratesValues
      * @param  (callable($this): TUnlessEmptyReturnType)|null  $default
      * @return $this|TUnlessEmptyReturnType
      */
-    public function unlessEmpty(callable $callback, callable $default = null)
+    public function unlessEmpty(callable $callback, ?callable $default = null)
     {
         return $this->whenNotEmpty($callback, $default);
     }
@@ -568,7 +572,7 @@ trait EnumeratesValues
      * @param  (callable($this): TUnlessNotEmptyReturnType)|null  $default
      * @return $this|TUnlessNotEmptyReturnType
      */
-    public function unlessNotEmpty(callable $callback, callable $default = null)
+    public function unlessNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->whenEmpty($callback, $default);
     }
@@ -1019,6 +1023,7 @@ trait EnumeratesValues
         }
 
         return match (true) {
+            $items instanceof WeakMap => throw new InvalidArgumentException('Collections can not be created using instances of WeakMap.'),
             $items instanceof Enumerable => $items->all(),
             $items instanceof Arrayable => $items->toArray(),
             $items instanceof Traversable => iterator_to_array($items),

@@ -143,6 +143,10 @@ abstract class Component
         }
 
         $resolver = function ($view) {
+            if ($view instanceof ViewContract) {
+                return $view;
+            }
+
             return $this->extractBladeViewFromString($view);
         };
 
@@ -166,7 +170,7 @@ abstract class Component
             return static::$bladeViewCache[$key];
         }
 
-        if (strlen($contents) <= PHP_MAXPATHLEN && $this->factory()->exists($contents)) {
+        if ($this->factory()->exists($contents)) {
             return static::$bladeViewCache[$key] = $contents;
         }
 

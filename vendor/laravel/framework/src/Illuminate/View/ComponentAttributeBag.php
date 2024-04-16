@@ -12,9 +12,10 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
 use JsonSerializable;
+use Stringable;
 use Traversable;
 
-class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSerializable, Htmlable
+class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSerializable, Htmlable, Stringable
 {
     use Conditionable, Macroable;
 
@@ -348,6 +349,26 @@ class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSeria
         }
 
         return $value;
+    }
+
+    /**
+     * Determine if the attribute bag is empty.
+     *
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return trim((string) $this) === '';
+    }
+
+    /**
+     * Determine if the attribute bag is not empty.
+     *
+     * @return bool
+     */
+    public function isNotEmpty()
+    {
+        return ! $this->isEmpty();
     }
 
     /**

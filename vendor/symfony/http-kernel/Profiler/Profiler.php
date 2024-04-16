@@ -37,7 +37,7 @@ class Profiler implements ResetInterface
     private bool $initiallyEnabled = true;
     private bool $enabled = true;
 
-    public function __construct(ProfilerStorageInterface $storage, LoggerInterface $logger = null, bool $enable = true)
+    public function __construct(ProfilerStorageInterface $storage, ?LoggerInterface $logger = null, bool $enable = true)
     {
         $this->storage = $storage;
         $this->logger = $logger;
@@ -46,20 +46,16 @@ class Profiler implements ResetInterface
 
     /**
      * Disables the profiler.
-     *
-     * @return void
      */
-    public function disable()
+    public function disable(): void
     {
         $this->enabled = false;
     }
 
     /**
      * Enables the profiler.
-     *
-     * @return void
      */
-    public function enable()
+    public function enable(): void
     {
         $this->enabled = true;
     }
@@ -110,10 +106,8 @@ class Profiler implements ResetInterface
 
     /**
      * Purges all data from the storage.
-     *
-     * @return void
      */
-    public function purge()
+    public function purge(): void
     {
         $this->storage->purge();
     }
@@ -121,21 +115,22 @@ class Profiler implements ResetInterface
     /**
      * Finds profiler tokens for the given criteria.
      *
-     * @param int|null    $limit The maximum number of tokens to return
-     * @param string|null $start The start date to search from
-     * @param string|null $end   The end date to search to
+     * @param int|null      $limit  The maximum number of tokens to return
+     * @param string|null   $start  The start date to search from
+     * @param string|null   $end    The end date to search to
+     * @param \Closure|null $filter A filter to apply on the list of tokens
      *
      * @see https://php.net/datetime.formats for the supported date/time formats
      */
-    public function find(?string $ip, ?string $url, ?int $limit, ?string $method, ?string $start, ?string $end, string $statusCode = null): array
+    public function find(?string $ip, ?string $url, ?int $limit, ?string $method, ?string $start, ?string $end, ?string $statusCode = null, ?\Closure $filter = null): array
     {
-        return $this->storage->find($ip, $url, $limit, $method, $this->getTimestamp($start), $this->getTimestamp($end), $statusCode);
+        return $this->storage->find($ip, $url, $limit, $method, $this->getTimestamp($start), $this->getTimestamp($end), $statusCode, $filter);
     }
 
     /**
      * Collects data for the given Response.
      */
-    public function collect(Request $request, Response $response, \Throwable $exception = null): ?Profile
+    public function collect(Request $request, Response $response, ?\Throwable $exception = null): ?Profile
     {
         if (false === $this->enabled) {
             return null;
@@ -150,6 +145,10 @@ class Profiler implements ResetInterface
             $profile->setIp($request->getClientIp());
         } catch (ConflictingHeadersException) {
             $profile->setIp('Unknown');
+        }
+
+        if ($request->attributes->has('_virtual_type')) {
+            $profile->setVirtualType($request->attributes->get('_virtual_type'));
         }
 
         if ($prevToken = $response->headers->get('X-Debug-Token')) {
@@ -168,10 +167,7 @@ class Profiler implements ResetInterface
         return $profile;
     }
 
-    /**
-     * @return void
-     */
-    public function reset()
+    public function reset(): void
     {
         foreach ($this->collectors as $collector) {
             $collector->reset();
@@ -191,10 +187,8 @@ class Profiler implements ResetInterface
      * Sets the Collectors associated with this profiler.
      *
      * @param DataCollectorInterface[] $collectors An array of collectors
-     *
-     * @return void
      */
-    public function set(array $collectors = [])
+    public function set(array $collectors = []): void
     {
         $this->collectors = [];
         foreach ($collectors as $collector) {
@@ -204,10 +198,8 @@ class Profiler implements ResetInterface
 
     /**
      * Adds a Collector.
-     *
-     * @return void
      */
-    public function add(DataCollectorInterface $collector)
+    public function add(DataCollectorInterface $collector): void
     {
         $this->collectors[$collector->getName()] = $collector;
     }
