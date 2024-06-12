@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dummyController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Faker\Guesser\Name;
@@ -41,6 +42,7 @@ Route::get('/dashboard', function () {
 Route::resource('user',UserController::class);
 Route::resource('role',RoleController::class);
 Route::resource('prodi',ProdiController::class);
+Route::resource('mahasiswa',MahasiswaController::class);
 
 Route::get('blank', function(){
     return view('default.blank');

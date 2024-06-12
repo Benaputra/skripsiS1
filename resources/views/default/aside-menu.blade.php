@@ -61,7 +61,7 @@
                         <li class="slide side-menu__label1">
                             <a href="javascript:void(0);"></a>
                         </li>
-                        <li class="slide has-sub">
+                        {{-- <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">User
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
@@ -75,18 +75,9 @@
                                     <a href="empty.html" class="side-menu__item">Give Role to User</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="slide has-sub">
-                            <a href="javascript:void(0);" class="side-menu__item">Mahasiswa
-                                <i class="fe fe-chevron-right side-menu__angle"></i></a>
-                            <ul class="slide-menu child2">
-                                <li class="slide">
-                                    <a href="blog-post.html" class="side-menu__item">Blog Post</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="empty.html" class="side-menu__item">Empty Page</a>
-                                </li>
-                            </ul>
+                            <a href="{{ route('mahasiswa.index') }}" class="side-menu__item">Mahasiswa</a>
                         </li>
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">Dosen</a>
