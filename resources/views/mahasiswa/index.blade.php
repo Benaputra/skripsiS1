@@ -9,7 +9,6 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>ID</th>
                     <th>Nama</th>
                     <th>NIM</th>
                     <th>Handphone</th>
@@ -92,7 +91,6 @@
           ajax: "{{ route('mahasiswa.index') }}",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-              {data: 'id', name: 'id'},
               {data: 'name', name: 'name'},
               {data: 'nim', name: 'nim'},
               {data: 'handphone', name: 'handphone'},

@@ -16,11 +16,18 @@ class MahasiswaController extends Controller
     public function index(Request $request)
     {
         $prodis = Prodi::all();
-        $mhs = Mahasiswa::latest()->get();
+        // $mhs = Mahasiswa::with('prodi')->get();
+        // $mhs = Mahasiswa::latest()->get();
         if ($request -> ajax()) {
-            $data = Mahasiswa::latest()->get();
+            // $data = Mahasiswa::latest()->get();
+            $data = Mahasiswa::with('prodi')->get();
+            
+            // $data = Mahasiswa::where('prodi_id',$prodis->id)->get();
             return DataTables::of($data)
             ->addIndexColumn()
+            ->editColumn('prodi_id', function ($row) {
+               return $row->prodi->name;
+            })
             ->addColumn('action', function($row){
                  // Update Button
                  $updateButton = "<button class='btn btn-sm btn-info updateMahasiswa' data-id='".$row->id."' data-bs-toggle='modal' data-bs-target='#updateModal' ><i class='fa fa-pencil-square'></i></button>";
@@ -29,9 +36,10 @@ class MahasiswaController extends Controller
                  
                  return $updateButton." ".$deleteButton;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'prodi_id'])
             ->make(true);
         }
+        // dd($mhs);
         return view('mahasiswa.index',compact('prodis'));
     }
 
