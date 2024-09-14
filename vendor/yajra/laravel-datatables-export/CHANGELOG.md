@@ -2,6 +2,22 @@
 
 ## UNRELEASED
 
+## v11.2.0 - 2024-09-02
+
+- fix: CVE-2024-45046 #63
+- fix: #62 
+- fix: yajra/laravel-datatables#3173
+
+## v11.1.1 - 2024-04-29
+
+- fix: pestphp require-dev #61
+- bump deps 
+- fix: yajra/laravel-datatables#3136
+
+## v11.1.0 - 2024-04-29
+
+- feat: add button name option #59
+
 ## v11.0.1 - 2024-04-16
 
 - fix: Export button URL: Merge new with existing query params #58
